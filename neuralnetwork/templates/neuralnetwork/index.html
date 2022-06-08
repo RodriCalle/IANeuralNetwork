@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Trabajo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="d-flex flex-column justify-content-center align-items-center mt-3 text-center">
+        <h2>
+            Trabajo IA - Clasificación de Vegetales
+        </h2>
+    </div>
+
+    <div class="container-fluid mt-3">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md">
+                    <form method="POST" class="post-form" enctype="multipart/form-data">  
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="file" class="form-label">Subir una imagen</label>
+                            <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control" id="file" name="file">
+                        </div>
+                        {{ form.errors }}
+                        <div class="mt-4">
+                            <button type="submit" class="save btn btn-primary">Predecir</button>  
+                        </div>
+                    </form>
+                </div>
+
+                {% if resultadoObtenido %}
+                   
+                <div class="col-md">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="{% static img_path %}" alt="Card image vegetable">
+                                <div class="card-body">
+                                    <h5 class="card-title">Resultado</h5>
+                                    <p class="card-text">
+                                        {{ resultado }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endif %}
+
+    
+            <div>
+        </div>
+    </div>
+</body>
+</html>
